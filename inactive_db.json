@@ -1,10 +1,12 @@
 {
     "/home/travis/build/Ultimate-Hosts-Blacklist/www.blocklist.de/domains.list": {
+        "1525507311": [
+            "2001:ee0:4001:583b:6bd:70ff:fe9a:921c"
+        ],
         "to_test": [
-            "2001:569:fff:1::5",
-            "2001:ee0:4001:583b:6bd:70ff:fe9a:921c",
             "2607:5300:60:b63:0:0:0:1",
-            "2a02:c207:2016:4098::1"
+            "2a02:c207:2016:4098::1",
+            "2001:569:fff:1::5"
         ]
     }
 }
