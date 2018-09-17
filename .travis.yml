@@ -1,31 +1,35 @@
 env:
   global:
-    - secure: To0q/8zPsnYS8nUCTybF2l3uxHp3dUegJUFjPYZrEQjNZG9bqQ8Qb7e+xUNzZDzF4SU2S5QfuJokkWPFGtc8wGw/N/qYLUgfEzjq5hUTfNqm3ZlWBcecydcAvVNqo/3vEAZvWo0mjw+okq+/LNCS4vk3YsAgPzyadHrCHBJmZJRgrKz0HN3nYfgTyybtjzzKedYRya/GdGPZ2eXOoqaGtjDmF0IvGizX9rc0l+Jv7vfbh3uT0ATks5G4Lo9i8NnWkVVM390DsdVLwfTitYkvY+urgmLyq1mu2Fy74sId8NN7bOlnKmKTkCu99B1CWugBUqq+AMCDfGuzF7DufXhpOhiTCPf9qWLQcOKDVctbbFAzB1mD4VqtLj5VJBa43gIV8WPHnLitxOnPIRKn4aPq4trv6yGpZiRDCdSw7wR4Ke/K3gSJoI7wftL3WvrPWtVqtEe99fk0dtlHH2bU6xkwn3Vd55vyV1zcHwCYwlgewUFKbq1xuwxr4jXCCcI9sh9E2AGpIF1Jux55xiSsoS8GSgZLMRJIOuiwNxx4KxOEtc2D/Bc82TLyvjF2mlPQiL8OF9uigw62dbPQe5YuB8O6P4n9vR21otoAEfQBQCpoWaKcgqI9gnqudXGjVL4/3fGk4fpDrRskJT7BcqLRvakJ4tf1hxIZV8TtK6ME+25VV3k=
+    - secure: WoXChJGJ1RAllCUPPSp3Sxhq0wj75s3CSwoS8FaUIKbDtt1ufHs4mRPEGmHZavUCVDP0rHOnyDxPcvYbRNG7a63nNhpYBChxUIZr1rjRGbzjHzXzuX7mX56fakgvGm4h64yKZGRVmreWNn2CRiT9n2wbuRtVEyjgFVOeJrgdTFPzKMghdSb2VgVUrh6P6BGtjjLylvHG50uDV4vvCRMhpbS8bo6WCc2xQmrnpGv3KhVLcl6q1fuP+LkA5CokXkpURZfAtLInGclxdv8r4gpd2ofY2UbThxx7kpGubUBjD1I1bA36IFKmUufwGL6K2/hOjsHbsCcpvzTRoQr0Z4WR7SdEoFxR12cyz7/Vghy74PvrPay7KplU2Oxdihr+N2aUmyY3Dn8vOXxP3f+/hHSDz5sLz9yWezSMkSiOY0da2nwOcrMQ+Vf+r6zvuvrlwlYuX7kKbsRNs0TXN6q38VvlIYRJPIyj6iwgnmAuFtEOHaJPRWOk+EvDn6DaaC5zX64hcGEolyea9p15JVkw2cm4t/kcoNg6cXu/r1ifBs/vmSw/dZbYXrhavajv9vkowNJtp/aciTZOCG/KkRUqK3R9HV/MYNkvAMtwfR1wVWsBhjwygoemp3dY0fxVFCxgV2SHu88348UAKoVPX+PDqObrwj23eTtfcvnsXOhVlCCyx5E=
     - GIT_NAME: Travis CI
     - GIT_EMAIL: dead-hosts@funilrys.com
     - TRAVIS_REPO_SLUG: Ultimate-Hosts-Blacklist/www.blocklist.de
     - GIT_BRANCH: master
 
+dist: xenial
+sudo: required
 language: python
 
 python:
-  - "3.6"
+  - "3.7"
 
 matrix:
   fast_finish: true
 
 cache:
-  - apt
   - pip
 
-sudo: required
+addons:
+  apt:
+    packages:
+      - dos2unix
 
-before_install:
-  - pip3 install colorama
-  - sudo apt-get -y install dos2unix
+install:
+  - pip3 install --upgrade pip
+  - pip3 install requests
 
 script:
-  - pip3 install git+https://github.com/funilrys/PyFunceble.git@dev#egg=PyFunceble && python3 ./update.py
+  - python3 ./update.py
 
 notifications:
   on_success:   change
