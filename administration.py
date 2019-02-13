@@ -37,7 +37,8 @@ def update_adminisation_file():
     Update what should be updated.
     """
 
-    INFO.update({"currently_under_test": str(int(False)), "last_test": strftime("%s")})
+    INFO.update({"currently_under_test": str(
+        int(False)), "last_test": strftime("%s")})
 
 
 def save_administration_file():
@@ -57,14 +58,15 @@ def generate_clean_and_whitelisted_list():
         clean_list = []
 
         list_special_content = Helpers.Regex(
-            Helpers.File(Settings.file_to_test + Settings.list_name).to_list(), r"ALL\s"
+            Helpers.File(Settings.file_to_test).to_list(), r"ALL\s"
         ).matching_list()
 
         active = Settings.current_directory + "output/domains/ACTIVE/list"
 
         if path.isfile(active):
             clean_list.extend(
-                Helpers.Regex(Helpers.File(active).to_list(), r"^#").not_matching_list()
+                Helpers.Regex(Helpers.File(active).to_list(),
+                              r"^#").not_matching_list()
                 + list_special_content
             )
 
@@ -75,7 +77,8 @@ def generate_clean_and_whitelisted_list():
             "\n".join(clean_list), overwrite=True
         )
 
-        Helpers.File(Settings.whitelisted_list_file).write(whitelisted, overwrite=True)
+        Helpers.File(Settings.whitelisted_list_file).write(
+            whitelisted, overwrite=True)
 
         Helpers.File("whitelisting.py").delete()
 
