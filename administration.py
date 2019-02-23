@@ -88,11 +88,12 @@ def generate_extra_files():  # pylint: disable=too-many-branches,too-many-statem
             for element in Helpers.Regex(
                 Helpers.File(inactive).to_list(), REGEX_SPECIAL
             ).matching_list():
-                if element and not is_subdomain(element):
-                    if element.startswith("www."):
-                        volatile_list.append(element[4:])
-                    else:
-                        volatile_list.append("www.{}".format(element))
+                if element:
+                    if not is_subdomain(element):
+                        if element.startswith("www."):
+                            volatile_list.append(element[4:])
+                        else:
+                            volatile_list.append("www.{}".format(element))
                     volatile_list.append(element)
             print("Stoping manipulation of `{}`.".format(active))
 
@@ -104,12 +105,13 @@ def generate_extra_files():  # pylint: disable=too-many-branches,too-many-statem
             )
         )
         for element in temp_clean_list:
-            if element and not is_subdomain(element):
-                if element.startswith("www."):
-                    clean_list.append(element[4:])
-                else:
-                    clean_list.append("www.{}".format(element))
-            clean_list.append(element)
+            if element:
+                if not is_subdomain(element):
+                    if element.startswith("www."):
+                        clean_list.append(element[4:])
+                    else:
+                        clean_list.append("www.{}".format(element))
+                clean_list.append(element)
         print(
             "Stoping the generation of the content of `{}`.".format(
                 Settings.clean_list_file
