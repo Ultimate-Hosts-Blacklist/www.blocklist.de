@@ -16,8 +16,7 @@ Contributors:
 """
 # pylint:disable=bad-continuation
 
-from PyFunceble import is_subdomain, syntax_check
-from PyFunceble import test as domain_availability_check
+from PyFunceble import is_subdomain
 from ultimate_hosts_blacklist_the_whitelist import clean_list_with_official_whitelist
 
 from update import Helpers, Settings, path, strftime
@@ -89,52 +88,11 @@ def generate_extra_files():  # pylint: disable=too-many-branches,too-many-statem
             for element in Helpers.Regex(
                 Helpers.File(inactive).to_list(), REGEX_SPECIAL
             ).matching_list():
-                print(
-                    "Checking eligibility of `{}` for introduction into `{}`...".format(
-                        element, Settings.volatile_list_file
-                    )
-                )
-                if (
-                    element
-                    and domain_availability_check(
-                        element, config=PYFUNCEBLE_CONFIGURATION_VOLATILE
-                    ).lower()
-                    == "active"
-                ):
-                    if not is_subdomain(element):
-                        if (
-                            element.startswith("www.")
-                            and domain_availability_check(
-                                element[4:], config=PYFUNCEBLE_CONFIGURATION_VOLATILE
-                            ).lower()
-                            == "active"
-                        ):
-                            print(
-                                "Introduction of `{}` into `{}`".format(
-                                    element[4:], Settings.volatile_list_file
-                                )
-                            )
-                            volatile_list.append(element[4:])
-                        else:
-                            if (
-                                domain_availability_check(
-                                    "www.{}".format(element),
-                                    config=PYFUNCEBLE_CONFIGURATION_VOLATILE,
-                                ).lower()
-                                == "active"
-                            ):
-                                print(
-                                    "Introduction of `{}` into `{}`".format(
-                                        "www.{}".format(element),
-                                        Settings.volatile_list_file,
-                                    )
-                                )
-                                volatile_list.append("www.{}".format(element))
-                    print(
-                        "Introduction of `{}` into `{}`".format(
-                            element, Settings.volatile_list_file
-                        )
-                    )
+                if element and not is_subdomain(element):
+                    if element.startswith("www."):
+                        volatile_list.append(element[4:])
+                    else:
+                        volatile_list.append("www.{}".format(element))
                     volatile_list.append(element)
             print("Stoping manipulation of `{}`.".format(active))
 
@@ -146,41 +104,12 @@ def generate_extra_files():  # pylint: disable=too-many-branches,too-many-statem
             )
         )
         for element in temp_clean_list:
-            if element:
-                if not is_subdomain(element) and syntax_check(element):
-                    print(
-                        "Checking eligibility of complementary element of `{}` for `{}`...".format(
-                            element, Settings.clean_list_file
-                        )
-                    )
-                    if (
-                        element.startswith("www.")
-                        and domain_availability_check(
-                            element[4:], config=PYFUNCEBLE_CONFIGURATION
-                        ).lower()
-                        == "active"
-                    ):
-                        print(
-                            "Introduction of `{}` into `{}`".format(
-                                element[4:], Settings.clean_list_file
-                            )
-                        )
-                        clean_list.append(element[4:])
-                    else:
-                        if (
-                            domain_availability_check(
-                                "www.{}".format(element),
-                                config=PYFUNCEBLE_CONFIGURATION,
-                            ).lower()
-                            == "active"
-                        ):
-                            print(
-                                "Introduction of `{}` into `{}`".format(
-                                    "www.{}".format(element), Settings.clean_list_file
-                                )
-                            )
-                            clean_list.append("www.{}".format(element))
-                clean_list.append(element)
+            if element and not is_subdomain(element):
+                if element.startswith("www."):
+                    clean_list.append(element[4:])
+                else:
+                    clean_list.append("www.{}".format(element))
+            clean_list.append(element)
         print(
             "Stoping the generation of the content of `{}`.".format(
                 Settings.clean_list_file
