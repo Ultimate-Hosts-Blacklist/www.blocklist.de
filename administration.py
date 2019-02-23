@@ -58,7 +58,7 @@ def save_administration_file():
     Helpers.Dict(INFO).to_json(Settings.repository_info)
 
 
-def generate_extra_files():  # pylint: disable=too-many-branches
+def generate_extra_files():  # pylint: disable=too-many-branches,too-many-statements
     """
     Update/Create `clean.list`, `volatile.list` and `whitelisted.list`.
     """
@@ -69,24 +69,26 @@ def generate_extra_files():  # pylint: disable=too-many-branches
         volatile_list = []
 
         list_special_content = Helpers.Regex(
-            Helpers.File(Settings.file_to_test).to_list(), r"ALL\s"
+            Helpers.File(Settings.file_to_test).to_list(), r"(ALL|REG|RZD)\s"
         ).matching_list()
 
         active = Settings.current_directory + "output/domains/ACTIVE/list"
         inactive = Settings.current_directory + "output/domains/INACTIVE/list"
 
         if path.isfile(active):
+            print("Starting manipulation of `{}`.".format(active))
             temp_clean_list.extend(
                 Helpers.Regex(Helpers.File(active).to_list(), r"^#").not_matching_list()
                 + list_special_content
             )
+            print("Stoping manipulation of `{}`.".format(active))
 
         if path.isfile(inactive):
-            list_to_retest = Helpers.Regex(
-                Helpers.File(inactive).to_list(), REGEX_SPECIAL
-            ).matching_list()
+            print("Starting manipulation of `{}`.".format(active))
 
-            for element in list_to_retest:
+            for element in Helpers.Regex(
+                Helpers.File(inactive).to_list(), REGEX_SPECIAL
+            ).matching_list():
                 print(
                     "Checking eligibility of `{}` for introduction into `{}`...".format(
                         element, Settings.volatile_list_file
@@ -134,13 +136,23 @@ def generate_extra_files():  # pylint: disable=too-many-branches
                         )
                     )
                     volatile_list.append(element)
+            print("Stoping manipulation of `{}`.".format(active))
 
         temp_clean_list = Helpers.List(temp_clean_list).format()
-        volatile_list = Helpers.List(volatile_list).format()
 
+        print(
+            "Starting the generation of the content of `{}`.".format(
+                Settings.clean_list_file
+            )
+        )
         for element in temp_clean_list:
             if element:
                 if not is_subdomain(element) and syntax_check(element):
+                    print(
+                        "Checking eligibility of complementary element of `{}` for `{}`...".format(
+                            element, Settings.clean_list_file
+                        )
+                    )
                     if (
                         element.startswith("www.")
                         and domain_availability_check(
@@ -148,6 +160,11 @@ def generate_extra_files():  # pylint: disable=too-many-branches
                         ).lower()
                         == "active"
                     ):
+                        print(
+                            "Introduction of `{}` into `{}`".format(
+                                element[4:], Settings.clean_list_file
+                            )
+                        )
                         clean_list.append(element[4:])
                     else:
                         if (
@@ -157,23 +174,40 @@ def generate_extra_files():  # pylint: disable=too-many-branches
                             ).lower()
                             == "active"
                         ):
+                            print(
+                                "Introduction of `{}` into `{}`".format(
+                                    "www.{}".format(element), Settings.clean_list_file
+                                )
+                            )
                             clean_list.append("www.{}".format(element))
                 clean_list.append(element)
+        print(
+            "Stoping the generation of the content of `{}`.".format(
+                Settings.clean_list_file
+            )
+        )
 
+        print("Deletion of duplicate for `{}`".format(Settings.clean_list_file))
         clean_list = Helpers.List(clean_list).format()
+        print(
+            "Generation of the content of `{}`".format(Settings.whitelisted_list_file)
+        )
         whitelisted = clean_list_with_official_whitelist(clean_list)
 
         volatile_list.extend(clean_list)
         volatile_list = Helpers.List(volatile_list).format()
 
+        print("Writing `{}`".format(Settings.clean_list_file))
         Helpers.File(Settings.clean_list_file).write(
             "\n".join(clean_list), overwrite=True
         )
 
+        print("Writing `{}`".format(Settings.whitelisted_list_file))
         Helpers.File(Settings.whitelisted_list_file).write(
             "\n".join(whitelisted), overwrite=True
         )
 
+        print("Writing `{}`".format(Settings.volatile_list_file))
         Helpers.File(Settings.volatile_list_file).write(
             "\n".join(volatile_list), overwrite=True
         )
