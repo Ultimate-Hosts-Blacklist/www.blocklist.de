@@ -1,19 +1,19 @@
 {
     "current_stats": {
-        "builds": 56,
+        "builds": 57,
         "counter": {
-            "down": 11680,
+            "down": 12920,
             "invalid": 0,
-            "tested": 23364,
-            "up": 11684
+            "tested": 25756,
+            "up": 12836
         }
     },
     "currently_under_test": "1",
     "days_until_next_test": 2,
     "end_datetime": "Wed Oct  2 03:47:03 2019",
     "end_epoch": 1569988023.504857,
-    "last_autosave_datetime": "Thu Oct 10 04:50:28 2019",
-    "last_autosave_epoch": 1570683028.625203,
+    "last_autosave_datetime": "Thu Oct 10 06:03:24 2019",
+    "last_autosave_epoch": 1570687404.108723,
     "name": "www.blocklist.de",
     "previous_stats": {
         "builds": 14,
