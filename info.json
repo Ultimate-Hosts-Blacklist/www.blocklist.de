@@ -1,6 +1,6 @@
 {
     "current_stats": {
-        "builds": 761,
+        "builds": 762,
         "counter": {
             "down": 0,
             "invalid": 0,
@@ -15,10 +15,13 @@
     },
     "currently_under_test": true,
     "days_until_next_test": 2,
+    "description": "All IP addresses that have attacked one of our customers/servers in the last 48 hours.",
     "end_datetime": "2020-03-03T16:10:19.986951",
     "end_epoch": 1576091344.943312,
+    "issue_link": "http://www.blocklist.de/en/contact.html",
     "last_autosave_datetime": "2020-03-03T16:10:19.986963",
     "last_autosave_epoch": 1583246487.456032,
+    "link": "http://www.blocklist.de/",
     "name": "www.blocklist.de",
     "previous_stats": {
         "builds": 34,
@@ -34,9 +37,6 @@
         "whitelisted.list": 13824
     },
     "raw_link": "https://lists.blocklist.de/lists/all.txt",
-    "link": "http://www.blocklist.de/",
-    "issue_link": "http://www.blocklist.de/en/contact.html",
-    "description": "All IP addresses that have attacked one of our customers/servers in the last 48 hours.",
     "start_datetime": "2020-03-03T16:10:19.991927",
     "start_epoch": 1576148245.68316
 }
