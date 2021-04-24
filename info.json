@@ -1,40 +1,18 @@
 {
-    "current_stats": {
-        "builds": 2217,
-        "counter": {
-            "down": 0,
-            "invalid": 0,
-            "malicious": 0,
-            "sane": 0,
-            "tested": 0,
-            "up": 0,
-            "valid": 0
-        },
-        "volatile.list": 11106,
-        "whitelisted.list": 11106
-    },
     "currently_under_test": true,
     "days_until_next_test": 2,
     "description": "All IP addresses that have attacked one of our customers/servers in the last 48 hours.",
     "end_datetime": "2020-03-03T16:10:19.986951",
     "end_epoch": 1576091344.943312,
     "issue_link": "http://www.blocklist.de/en/contact.html",
-    "last_autosave_datetime": "2020-03-03T16:10:19.986963",
-    "last_autosave_epoch": 1583246487.456032,
     "link": "http://www.blocklist.de/",
     "name": "www.blocklist.de",
-    "previous_stats": {
-        "builds": 34,
-        "clean.list": 13824,
-        "counter": {
-            "down": 15092,
-            "invalid": 0,
-            "tested": 28916,
-            "up": 13824
-        },
-        "domains.list": 28916,
-        "volatile.list": 13824,
-        "whitelisted.list": 13824
+    "previous_end_datetime": "2020-04-24T06:40:07.254212",
+    "previous_end_epoch": 1587710407.254215,
+    "previous_start_datetime": "2020-04-24T06:40:07.254200",
+    "previous_start_epoch": 1587710407.254213,
+    "pyfunceble": {
+        "config": {}
     },
     "raw_link": "https://lists.blocklist.de/lists/all.txt",
     "start_datetime": "2020-03-03T16:10:19.991927",
