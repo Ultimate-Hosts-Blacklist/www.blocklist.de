@@ -167,6 +167,7 @@
     "app": [
         "a.run.app",
         "bookonline.app",
+        "developer.app",
         "edgecompute.app",
         "fireweb.app",
         "framer.app",
@@ -174,6 +175,7 @@
         "loginline.app",
         "multibaas.app",
         "netlify.app",
+        "noop.app",
         "northflank.app",
         "ondigitalocean.app",
         "platform0.app",
@@ -957,6 +959,8 @@
         "appspaceusercontent.com",
         "appspot.com",
         "ar.com",
+        "authgear-staging.com",
+        "authgearapps.com",
         "awsglobalaccelerator.com",
         "awsmppl.com",
         "balena-devices.com",
@@ -1556,6 +1560,8 @@
         "deno.dev",
         "fly.dev",
         "gateway.dev",
+        "github.dev",
+        "githubpreview.dev",
         "iserv.dev",
         "lcl.dev",
         "lclstage.dev",
@@ -1765,6 +1771,7 @@
         "freebox-os.fr",
         "freeboxos.fr",
         "geometre-expert.fr",
+        "goupile.fr",
         "gouv.fr",
         "greta.fr",
         "huissier-justice.fr",
@@ -7468,7 +7475,6 @@
         "org.ru",
         "pp.ru",
         "pyatigorsk.ru",
-        "ra-ru.ru",
         "ras.ru",
         "spb.ru",
         "spectrum.myjino.ru",
@@ -7476,8 +7482,7 @@
         "vladikavkaz.ru",
         "vladimir.ru",
         "vps.mcdir.ru",
-        "vps.myjino.ru",
-        "zsew.ru"
+        "vps.myjino.ru"
     ],
     "run": [
         "code.run",
@@ -7702,7 +7707,8 @@
         "store.st"
     ],
     "store": [
-        "shopware.store"
+        "shopware.store",
+        "storebase.store"
     ],
     "su": [
         "abkhazia.su",
@@ -8089,6 +8095,7 @@
         "gov.uk",
         "gwiddle.co.uk",
         "homeoffice.gov.uk",
+        "hosp.uk",
         "j.layershift.co.uk",
         "ltd.uk",
         "lug.org.uk",
