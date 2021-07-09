@@ -1,13 +1,15 @@
-{
-    "checker_type": "AVAILABILITY",
-    "destination": "domains.list",
-    "hash": "f0ef4cbfc016589de6bd7ea9d0661e9d84bff8b8b295984a86eac85b",
-    "line_number": 7273,
-    "output_dir": "/home/runner/work/www.blocklist.de/www.blocklist.de/output/domains.list",
-    "previous_hash": "807a7b4bc8610ccd98a8db3b7c79569eb310b759677f31939c829395",
-    "session_id": "eddcc95f412b1e5543383570",
-    "source": "domains.list",
-    "subject": "domains.list",
-    "subject_type": "domain",
-    "type": "file"
-}
+[
+    {
+        "checker_type": "AVAILABILITY",
+        "destination": "domains.list",
+        "hash": "2da8a6f960f3a857b46a5b4e4930c0905d30d9a529543995bb2d16a7",
+        "line_number": 6838,
+        "output_dir": "/home/runner/work/www.blocklist.de/www.blocklist.de/output/domains.list",
+        "previous_hash": "807a7b4bc8610ccd98a8db3b7c79569eb310b759677f31939c829395",
+        "session_id": "eddcc95f412b1e5543383570",
+        "source": "domains.list",
+        "subject": "domains.list",
+        "subject_type": "domain",
+        "type": "file"
+    }
+]
