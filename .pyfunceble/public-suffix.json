@@ -164,6 +164,8 @@
     "app": [
         "a.run.app",
         "bookonline.app",
+        "clerk.app",
+        "clerkstage.app",
         "developer.app",
         "edgecompute.app",
         "fireweb.app",
@@ -417,7 +419,6 @@
     "bm": [
         "com.bm",
         "edu.bm",
-        "gov.bm",
         "net.bm",
         "org.bm"
     ],
@@ -555,6 +556,7 @@
         "go.gov.br",
         "go.leg.br",
         "goiania.br",
+        "gov.bm",
         "gov.br",
         "gru.br",
         "imb.br",
